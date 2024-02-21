@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="header">
+		<h1>Blogs</h1>	
+	</div>
+	<div class="blogs">
+		<% if @posts.present? %>
+			<% @posts.each do |post| %>
+				<div class="card">
+					<div class="card-header">
+						<%= post.title %>
+					</div>
+					<div class="card-body">
+						<%= post.description %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<h2>There are currently no posts!!</h2>
+			<%= link_to 'Create Post', new_post_path, class: 'btn btn-primary' %>
+		<% end %>
+	</div>
+</div>
