@@ -1,0 +1,18 @@
+<div class="section">
+	<div class="container">
+		<div class="back">
+			<%= link_to 'Back', root_path, class: 'btn btn-primary' %>
+		</div>
+		<div class="post-form">
+			<%= form_with(model: @post, class: "form") do |form| %>
+				<%= form.label :title, 'Title', class: 'form-label' %>
+				<%= form.text_field :title, class: 'form-control' %>
+
+				<%= form.label :description, 'Description', class: 'form-label' %>
+				<%= form.rich_text_area :description, class: 'form-control' %>
+
+				<%= form.submit 'Submit', class: 'btn btn-secondary mt-3' %>
+			<% end %>
+		</div>
+	</div>
+</div>
