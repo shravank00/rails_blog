@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="post-heading">
+		<h2>Post</h2>
+	</div>
+	<div class="post-detail">
+		<p>
+			<span class="fw-bold">Title:</span>
+			<span><%= @post.title %></span>
+		</p>
+		<p>
+			<span class="fw-bold">Description:</span>
+			<span><%= @post.description %></span>
+		</p>
+	</div>
+	<%= link_to "Back", root_path, class: 'btn btn-primary' %>	
+</div>
