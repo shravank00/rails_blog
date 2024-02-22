@@ -1,0 +1,9 @@
+.header {
+	background-color: skyblue;
+	height: 300px;
+}
+
+.header h1 {
+	top: 50%;
+	position: relative;
+}
