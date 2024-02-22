@@ -1,0 +1,13 @@
+
+<%= form_with(model: @post, class: "form") do |form| %>
+<div class="card-header">
+	<%= form.label :title, 'Title', class: 'form-label' %>
+	<%= form.text_field :title, class: 'form-control' %>
+</div>
+<div class="card-body">
+	<%= form.label :description, 'Description', class: 'form-label' %>
+	<%= form.rich_text_area :description, class: 'form-control' %>
+
+	<%= form.submit 'Submit', class: 'btn btn-secondary mt-3' %>
+</div>
+<% end %>

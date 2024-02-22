@@ -13,13 +13,18 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		if @post.save
-			redirect_to @post
+			redirect_to root_path
 		else
 			render :new, status: unprocessable_entity
 		end
 	end
 
-	def edit;	end
+	def edit
+		respond_to do |format|
+			format.html
+			format.turbo_stream { render turbo_stream: turbo_stream.replace("post_#{@post.id}_edit", partial: 'edit_post_form') }
+		end
+	end
 
 	def update
 		if @post.update(post_params)

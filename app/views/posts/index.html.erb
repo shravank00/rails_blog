@@ -1,18 +1,20 @@
 <div class="main">
 	<div class="header text-center">
-		<%= link_to 'Create Post', new_post_path, class: 'btn btn-primary float-end mt-2 me-2' %>
+		<%= link_to('#', class: 'btn btn-primary float-end mt-2 me-2', data: { bs_toggle: 'modal', bs_target: '#new_post_modal'}) do %>
+			Create Post
+		<% end %>
 		<h1>Blogs</h1>	
 	</div>
 	<div class="container blogs">
 		<% if @posts.present? %>
 			<% @posts.each do |post| %>
-				<div class="card mb-2 mt-2">
+				<div class="card mb-2 mt-2" id="post_<%= post.id %>_edit">
 					<div class="card-header">
 						<div>
 							<%= link_to post.title, post_path(post) %>
 						</div>
 						<div class="float-end">
-							<%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary' %>
+							<%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary', data: { turbo_stream: true } %>
 							<%= link_to 'Delete', post_path(post), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Do you really want to delete this post?' } %>
 						</div>
 					</div>
@@ -25,4 +27,5 @@
 			<h2>There are currently no posts!!</h2>
 		<% end %>
 	</div>
+	<%= render partial: 'new_post_form_modal' %>
 </div>
