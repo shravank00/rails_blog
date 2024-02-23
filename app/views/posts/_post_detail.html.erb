@@ -9,4 +9,7 @@
 	<div class="card-body">
 		<%= post.description %>
 	</div>
+	<div class="card-footer" id="post_<%= post.id %>_comments">
+		<%= render partial: 'post_comments', locals: { post: post } %>
+	</div>
 </div>
