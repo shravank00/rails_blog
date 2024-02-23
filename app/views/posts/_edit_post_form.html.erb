@@ -1,0 +1,20 @@
+
+<%= form_with(model: @post, class: "form") do |form| %>
+<div class="card-header">
+	<%= form.label :title, 'Title', class: 'form-label' %>
+	<%= form.text_field :title, class: 'form-control' %>
+	<% @post.errors.full_messages_for(:title).each do |message| %>
+		<div class="errors text-danger"><%= message %></div>
+	<% end %>
+</div>
+<div class="card-body">
+	<%= form.label :description, 'Description', class: 'form-label' %>
+	<%= form.rich_text_area :description, class: 'form-control' %>
+	<% @post.errors.full_messages_for(:description).each do |message| %>
+		<div class="errors text-danger"><%= message %></div>
+	<% end %>
+
+	<%= form.submit 'Submit', class: 'btn btn-primary mt-3' %>
+	<%= link_to 'Cancel', root_path, class: 'btn btn-dark mt-3' %>
+</div>
+<% end %>

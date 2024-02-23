@@ -13,25 +13,34 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		if @post.save
-			redirect_to @post
+			flash[:notice] = 'Post created successfully!!'
 		else
-			render :new, status: unprocessable_entity
+			flash[:alert] = @post.errors.full_messages.join(', ')
+		end
+		redirect_to root_path
+	end
+
+	def edit
+		respond_to do |format|
+			format.html
+			format.turbo_stream { render turbo_stream: turbo_stream.update("post_#{@post.id}_edit", partial: 'edit_post_form') }
 		end
 	end
 
-	def edit;	end
-
 	def update
 		if @post.update(post_params)
-			redirect_to @post
+			respond_to do |format|
+				format.html
+				format.turbo_stream { render turbo_stream: turbo_stream.replace("post_#{@post.id}_edit", partial: 'post_detail', locals: { post: @post }) }
+			end
 		else
-			render :edit, status: :unprocessable_entity
+			render turbo_stream: turbo_stream.update("post_#{@post.id}_edit", partial: 'edit_post_form')
 		end
 	end
 	
 	def destroy
 		@post.destroy
-		redirect_to root_path
+		render turbo_stream: turbo_stream.remove("post_#{@post.id}_edit")
 	end
 
 	private

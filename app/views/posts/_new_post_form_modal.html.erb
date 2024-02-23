@@ -1,0 +1,21 @@
+<div class="modal modal-lg fade" id="new_post_modal" tabindex="-1" aria-labelledby="label" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add Post</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+			</div>
+			<div class="modal-body">
+				<%= form_with(model: @post, url: posts_path) do |form| %>
+					<%= form.label :title, 'Title', class: 'form-label' %>
+					<%= form.text_field 'post[title]', class: 'form-control' %>
+
+					<%= form.label :description, 'Description', class: 'form-label' %>
+					<%= form.rich_text_area 'post[description]', class: 'form-control' %>
+
+					<%= form.submit 'Submit', class: 'btn btn-primary mt-3' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
