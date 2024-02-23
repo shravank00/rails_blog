@@ -7,22 +7,7 @@
 	</div>
 	<div class="container blogs">
 		<% if @posts.present? %>
-			<% @posts.each do |post| %>
-				<div class="card mb-2 mt-2" id="post_<%= post.id %>_edit">
-					<div class="card-header">
-						<div>
-							<%= link_to post.title, post_path(post) %>
-						</div>
-						<div class="float-end">
-							<%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary', data: { turbo_stream: true } %>
-							<%= link_to 'Delete', post_path(post), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Do you really want to delete this post?' } %>
-						</div>
-					</div>
-					<div class="card-body">
-						<%= post.description %>
-					</div>
-				</div>
-			<% end %>
+			<%= render partial: 'post_detail', collection: @posts, as: :post %>
 		<% else %>
 			<h2>There are currently no posts!!</h2>
 		<% end %>
