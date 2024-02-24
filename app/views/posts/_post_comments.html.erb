@@ -2,11 +2,11 @@
 	<div class="col-3">
 		<span class="fw-bold">Add Comment:</span>
 	</div>
-	<div class="col-9">
+	<div class="col-9" id="comment-form">
 		<%= render partial: 'comments/comment_form', locals: {post: post} %>
 	</div>
 </div>
-<div>
+<div id="post-<%= post.id %>-comments">
 	<% if post.comments.exists? %>
 		<span class="fw-bold"><%= post.comments.count %> Comments</span>
 	<% end %>

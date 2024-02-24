@@ -1,20 +1,17 @@
 class CommentsController < ApplicationController
-	before_action :set_post, only: [:new, :create, :destroy]
-	def new
-		@comment = @post.comments.new
-	end
+	before_action :set_post, only: [:create, :destroy]
 
 	def create
-		@comment = @post.comments.new(comment_params)
+		@comment = @post.comments.build(comment_params)
 		if @comment.save
-			render turbo_stream: turbo_stream.update("post_#{@post.id}_comments", partial: 'posts/post_comments', locals: { post: @post })
+			redirect_to root_path
 		end
 	end
 
 	def destroy
 		@comment = @post.comments.find_by(id: params[:id])
 		@comment.destroy
-		render turbo_stream: turbo_stream.update("post_#{@post.id}_comments", partial: 'posts/post_comments', locals: { post: @post })
+		render turbo_stream: turbo_stream.remove("comment_#{@comment.id}")
 	end
 
 	private
