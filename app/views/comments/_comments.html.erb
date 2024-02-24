@@ -1,0 +1,9 @@
+<div id="comment_<%= comment.id %>">
+	<span><%= comment.text %></span>
+	<%= link_to post_comment_path(post, comment), class: 'text-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+		<i class="fa-regular fa-trash-can"></i>
+	<% end %> 
+	<% unless comment.eql?(post.comments.last) %>
+		<hr />
+	<% end %>
+</div>
